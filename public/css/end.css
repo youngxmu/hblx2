@@ -1,0 +1,58 @@
+.msg{line-height: 1rem;color: #333;font-weight:bold;font-size:0.32rem;text-align: center;}
+.container {
+    background-color: #ffffff;
+    height: 100%;
+    overflow: hidden;
+}
+
+.page-panel{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    -webkit-transform:translateY(0);
+    -webkit-transition:-webkit-transform 400ms;
+}
+
+.page{
+    -webkit-transition:-webkit-transform 400ms;
+    height: 100%;
+    padding: 0 0.4rem;
+    background-repeat: no-repeat;
+    background-position: center top;
+    background-size: 100% 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    vertical-align: top;
+    font-size: 0;
+}
+
+.page1{
+    background-image: url("../img/6.jpg");
+    -webkit-transform:translateY(0%);
+}
+.page2{
+    background-image: url("../img/7.jpg");
+    -webkit-transform:translateY(100%);
+}
+
+.page3{
+    background-image: url("../img/8.jpg");
+    -webkit-transform:translateY(200%);
+}
+
+.page4{
+    background-image: url("../img/9.jpg");
+    -webkit-transform:translateY(300%);
+}
+
+.page5{
+    background-image: url("../img/10.jpg");
+    -webkit-transform:translateY(400%);
+}
+
+.page6{
+    background-image: url("../img/11.jpg");
+    -webkit-transform:translateY(500%);
+}

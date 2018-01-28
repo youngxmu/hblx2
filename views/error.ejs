@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" >
+	<meta name="applicable-device" content="mobile">
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1.0, user-scalable=no">
+	<base href="http://10.99.13.32:8531/">
+	<link rel='stylesheet' href='http://www.cnhubei.com/download/2016/police/css/common.css' />
+	<link rel='stylesheet' href='http://www.cnhubei.com/download/2016/police/css/weui.min.css' />
+    <title>信息</title>
+  	<script>
+      (function (doc, win) { 
+        var docEl = doc.documentElement,
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+          recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            docEl.style.fontSize = parseInt(100 * (clientWidth / 320) * 320 / 640,10) + 'px';
+          };
+        if (!doc.addEventListener) return; 
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+      })(document, window);
+ 	</script>
+</head>
+<body>
+	<div class="weui_msg">
+	    <div class="weui_icon_area">
+	    	<i class="weui_icon_msg weui_icon_warn"></i>
+	    </div>
+	    <div class="weui_text_area">
+	        <h2 class="weui_msg_title"><%= msg %></h2>
+	    </div>
+	</div>
+</body>
+</html>
+

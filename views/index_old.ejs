@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include common/meta.ejs %>
+    <!-- <link rel='stylesheet' href='css/index.css' /> -->
+    <title>湖北老乡，家乡邀你来打分啦</title>
+   
+    <style type="text/css">
+        *{margin:0;padding:0;box-sizing: border-box;-webkit-box-sizing: border-box;-moz-box-sizing:border-box;
+        -webkit-tap-highlight-color: rgba(200,200,200,0);}/**-webkit-user-select: none;**/
+        html{font-size : 48px ;height: 100%;width: 100%;font-family: "Helvetica Neue", Helvetica, STHeiTi, sans-serif;}
+        /** * Galaxy S5 landscape & portrait */
+        @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 3){html{font-size: 56px ;}}
+        /** * Galaxy S5 landscape & portrait */
+        @media screen and (device-width: 360px) and (device-height: 640px) and (-webkit-device-pixel-ratio: 4){html{font-size: 56px ;}}
+        @media only screen and (min-width: 375px){html{font-size: 58px ;}}
+        @media only screen and (min-width: 414px){html{font-size: 64px ;}}
+        @media only screen and (min-width: 481px){html{font-size: 70px ;}}
+        @media only screen and (min-width: 569px){html{font-size: 65px ;}}
+        @media only screen and (min-width: 600px){html{font-size: 93px ;}}
+        @media only screen and (min-width: 800px){html{font-size: 93px ;}}
+        @media screen and (max-device-width: 480px){body{-webkit-text-size-adjust: none;}}
+        a{text-decoration: none;-webkit-tap-highlight-color:rgba(221, 221, 221,0)}
+        body{margin:0; font-size:.24rem; width:100%; height: 100%; background:#f6f6f6;}
+        dl,dt,dd{margin:0; padding:0}
+        ul{margin:0;padding:0}
+        li{list-style-type:none;}
+        input{outline:none} 
+        .dlg{position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 99;}
+        .dlg.on{display: block;}
+        .dlg.off{display: none;}
+
+        @-webkit-keyframes shake {
+            0% {
+                -webkit-transform: translateY(0);
+                opacity: 1;
+            }
+            90% {
+                -webkit-transform: translateY(-0.4rem);
+                opacity: 0.2;
+            }
+            100% {
+                -webkit-transform: translateY(-0.5rem);
+                opacity: 0;
+            }
+        }
+
+        @keyframes shake {
+            0% {
+                -webkit-transform: translateY(0);
+                opacity: 1;
+            }
+             90% {
+                -webkit-transform: translateY(-0.4rem);
+                opacity: 0.2;
+            }
+            100% {
+                -webkit-transform: translateY(-0.5rem);
+                opacity: 0;
+            }
+        }
+
+
+        @keyframes twinkling {
+          0%{
+            opacity: 1;
+          }
+          50%{
+            opacity: 0.5;
+          }
+          100%{
+            opacity: 1;
+          }
+        }
+        @-webkit-keyframes twinkling{
+          0%{
+            opacity: 1;
+          }
+          50%{
+            opacity: 0.5;
+          }
+          100%{
+            opacity: 1;
+          }
+        }
+
+        @keyframes scale {
+          0%{
+            transform: scale(1);
+          }
+          50%{
+            transform: scale(1.2);
+          }
+          100%{
+            transform: scale(1);
+          }
+        }
+        @-webkit-keyframes scale{
+          0%{
+            transform: scale(1);
+          }
+          50%{
+            transform: scale(1.2);
+          }
+          100%{
+            transform: scale(1);
+          }
+        }
+
+              .container {
+            background-color: #ffffff;
+            height: 100%;
+            overflow: hidden;
+        }
+        .cover{
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            -webkit-transform:translateX(0);
+            -webkit-transition:-webkit-transform 400ms;
+            
+        }
+
+
+        /** msgs */
+        .page-panel{
+            /*-webkit-overflow-scrolling:touch;*/
+        }
+
+        .page{
+            width: 100%;
+            height: 100%;
+            font-size: 0;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            position: absolute;
+            left: 0;
+            top: 0;
+            
+            -webkit-transition:-webkit-transform 400ms;
+            overflow: hidden;
+        }
+
+        .page1{
+            background-image: url("img/p1-bg.png");
+            -webkit-transform:translateX(0);
+            position: relative;
+        }
+
+        .page1 .p13{
+            width: 3rem;
+            height: 0.8rem;
+            position: absolute;
+            top: 6.9rem;
+            left: 1.7rem;
+            display: inline-block;
+        }
+
+        .page2{
+            background-image: url("img/p2-bg.jpg");
+            -webkit-transform:translateX(100%);
+            background-size: 100% auto;
+            background-position: center top;
+            background-color: #FD9224;
+        }
+
+        .page2 .p21{
+            position: absolute;
+            width: 1.03rem;
+            height: 0.59rem;
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p2-1.png");
+            background-position: center center;
+            top: 2.6rem;
+            right: 1rem;
+            -webkit-animation:twinkling 0.8s infinite ease-in-out;
+            /*animation:twinkling 1.2s infinite ease-in-out;*/
+        }
+
+        .page2 .city{
+            position: absolute;
+            width: 0.4rem;
+            height: 0.4rem;
+        }
+
+
+        .page3{
+            /*background-image: url("http://act.cnhubei.com/static/hblx/img/p3-bg.png");*/
+            background-color: #FDD100;
+            -webkit-transform:translateX(200%);
+        }
+
+
+        .page3 .mail-cover{
+            position: absolute;
+            width: 100%;
+            height: 7.27rem;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p3-2.png");
+            background-position: center 1rem;
+            left: 0;
+            bottom: 0;
+            z-index : 1;
+        }
+
+        .page3 .mail{
+            position: absolute;
+            width: 90%;
+            height: 100%;
+            overflow: auto;
+            margin: 0 5%;
+            /*padding: 0 0.25rem;*/
+            padding-top: 0.6rem;
+            background-size: 100% 0.48rem;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p5-11.png");
+            background-position: center top;
+            left: 0;
+            bottom: 0;
+            z-index : 2;
+            background-color: #E2E5E7;
+            -webkit-transition:-webkit-transform 800ms;
+            -webkit-transform:translateY(69%);
+            
+        }
+        .page3 .mail .content{
+            height: 100%;
+            overflow: auto;
+            -webkit-overflow-scrolling:touch;
+        }
+
+        .page3 .mail img{
+            width: 100%;
+            padding-bottom: 1.5rem;
+            opacity: 0;
+            -webkit-transition:opacity 400ms;
+        }
+
+        .page3 .btn-open{
+            position: absolute;
+            width: 2.03rem;
+            height: 0.47rem;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p3-1.png");
+            background-position: center center;
+            left: 50%;
+            top: 0.8rem;
+            margin-left: -1.01rem;
+        }
+
+        .page3 .btn-score{
+            position: absolute;
+            width: 4.8rem;
+            height: 0.6rem;
+            left: 0.8rem;
+            bottom: 2.4rem;
+            display: none;
+        }
+
+        .page3 .mail-box{
+            position: absolute;
+            width: 100%;
+            height: 3rem;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/P3-3.png");
+            background-position: center top;
+            left: 0;
+            bottom: 0;
+            z-index : 3;
+        }
+
+        .page3 .move{
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/up.png");
+            background-position: center center;
+            right: 0.4rem;
+            bottom: 3rem;
+            z-index: 3;
+            /*margin-left: 0.54rem;*/
+            opacity: 0;
+            
+        }
+        .page3 .move.on{
+            display: block;
+            -webkit-animation:move-tb 2s 0.8s forwards ease-in-out;
+        }
+
+        .noscroll,
+        .noscroll body {
+            overflow: hidden;
+        }
+        .noscroll body {
+            position: relative;
+        }
+
+        @-webkit-keyframes move-tb {
+            0% {
+                -webkit-transform: translateY(0);
+                opacity: 1;
+            }
+            49% {
+                -webkit-transform: translateY(-1rem);
+                opacity: 0;
+            }
+            50% {
+                -webkit-transform: translateY(0);
+                opacity: 1;
+            }
+            99% {
+                -webkit-transform: translateY(-1rem);
+                opacity: 0;
+            }
+            100% {
+                -webkit-transform: translateY(0);
+                opacity: 0;
+            }
+        }
+
+
+
+        .page4{
+            background-image: url("http://act.cnhubei.com/static/hblx/img/P4-bg.png");
+            -webkit-transform:translateX(300%);
+            background-size: 100% auto;
+            background-position: center top;
+            background-color: #FD9224;
+            padding-top: 4rem;
+        }
+
+
+        .page4 .p41{
+            position: absolute;
+            width: 1.74rem;
+            height: 0.62rem;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p4-1.png");
+            background-position: center center;
+            left: 50%;
+            margin-left: -0.87rem;
+            bottom: 0.5rem;
+        }
+
+        .page4 .score-panel{
+            padding: 0 0.3rem;
+        }
+
+        .page4 .score-panel li{
+            padding-left: 1.3rem;
+            position: relative;
+            height: 0.4rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .page4 .score-panel li label{
+            position: absolute;left: 0;top: 0;
+            line-height: 0.4rem;
+            height: 0.4rem;
+            width: 1.2rem;
+            text-align: center;
+            font-size: 0.24rem;
+        }
+
+        .page4 .score-panel li .bar-box{
+            height: 0.4rem;
+            width: 100%;
+            background-color: #FFEB8C;
+            border-radius: 0.2rem;
+            position: relative;
+        }
+
+        .page4 .score-panel li .bar{
+            height: 100%;
+            width: 0;
+            background-color: #FF8100;
+            border-radius: 0.2rem;
+        }
+
+        .page4 .score-panel li .cursor{
+            position: absolute;
+            width: 0.4rem;
+            height: 0.4rem;
+            background-size: 0.38rem 0.38rem;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p4-2.png");
+            background-position: center center;
+            left: 0;
+            bottom: 0;
+            background-color: #828281;
+            border-radius: 50%;
+        }
+
+        .page4 .score-panel li .move{
+            position: absolute;
+            width: 0.54rem;
+            height: 0.57rem;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p4-3.png");
+            background-position: center center;
+            left: 50%;
+            top: 0.1rem;
+            /*margin-left: 0.54rem;*/
+            opacity: 0;
+        }
+
+        .page4 .score-panel li .move.on{
+            -webkit-animation:move-lr 2s forwards ease-in-out;
+        }
+
+        @-webkit-keyframes move-lr {
+            0% {
+                -webkit-transform: translateX(0);
+                opacity: 0;
+            }
+            10% {
+                -webkit-transform: translateX(0.1rem);
+                opacity: 1;
+            }
+            50% {
+                -webkit-transform: translateX(0.54rem);
+                opacity: 1;
+            }
+            90% {
+                -webkit-transform: translateX(0.1rem);
+                opacity: 1;
+            }
+            100% {
+                -webkit-transform: translateX(0.1rem);
+                opacity: 0;
+            }
+        }
+
+
+
+        .page5{
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p5-4.png");
+            -webkit-transform:translateX(400%);
+            background-size: 100% auto;
+            background-position: center -0.5rem;
+            background-color: #FD9224;
+            padding-top: 2.15rem;
+        }
+
+
+        .page5 .p1{
+            position: relative;
+            width: 100%;
+            height: 2.73rem;
+            padding: 0 0.7rem;
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p5-1.png");
+            background-position: center center;
+        }
+        .page5 .p1 .content{
+            padding-top: 0.5rem;
+            font-size: 0.24rem;
+            text-align: justify;
+            text-indent: 0.48rem;
+        }
+        .page5 .p1 .btn-send{
+            width: 1.72rem;
+            height: 0.36rem;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p5-2.png");
+            background-position: center center;
+            position: absolute;
+            text-indent: 0.48rem;
+            font-weight: 400;
+            right: 0.6rem;
+            bottom: 0.2rem;
+            -webkit-animation:twinkling 0.8s infinite ease-in-out;
+        }
+        .page5 .p1 .btn-send.active{
+            -webkit-transition:-webkit-transform 400ms;
+            -webkit-transform:translateX(3rem);
+        }
+
+        .page5 .p2{
+            position: absolute;
+            width: 100%;
+            height: 2.73rem;
+            padding: 0 0.4rem;
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p5-1.png");
+            background-position: center center;
+            margin-top: 0.5rem;
+            opacity: 0;
+            -webkit-transition:opacity 800ms 400ms;
+        }
+
+        .page5 .p2 .content{
+            padding-top: 0.8rem;
+            font-size: 0.24rem;
+            text-align: justify;
+            text-indent: 0.48rem;
+        }
+
+        .page5 .btn-share{
+            position: absolute;
+            width: 1.61rem;
+            height: 0.58rem;
+            background-size: auto 100%;
+            background-repeat: no-repeat;
+            background-image: url("http://act.cnhubei.com/static/hblx/img/p5-3.png");
+            background-position: center center;
+            left: 50%;
+            bottom: 1rem;
+            margin-left: -0.8rem;
+        }
+
+
+        .page5 .share-msg{
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            bottom: 0.25rem;
+            left: 0;
+            font-size: 0.2rem;
+        }
+        .dlg{position: fixed;top: 0;left: 0;width: 100%;height: 100%;z-index: 99;}
+        .dlg.on{display: block;}
+        .dlg.off{display: none;}
+        .dlg .mask{position: fixed;width: 100%;height: 100%;left: 0;top: 0;opacity: 0.7;background-color: #000000;
+            z-index: 100;
+        }
+
+        .dlg.share .dlg-content {
+            background-image: url("http://www.cnhubei.com/download/2016/police/img/p3_20.png");
+            background-position: top  right;
+            background-size: 100% auto;
+            background-repeat: no-repeat;
+            width: 80%;height: 100%;
+            margin: 0 10%;
+            z-index: 9999;
+            position: fixed;
+            right: 0;
+            top: 0;
+        }
+
+        .btn-back{
+            position: absolute;
+            width: 3rem;
+            height: 0.6rem;
+            left: 1.8rem;
+            bottom: 1.5rem;
+            z-index: 10;
+            display: none;
+        }
+    </style>
+    <script>
+      (function (doc, win) { 
+        var docEl = doc.documentElement,
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+          recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            docEl.style.fontSize = parseInt(100 * (clientWidth / 320) * 320 / 640,10) + 'px';
+          };
+        if (!doc.addEventListener) return; 
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+      })(document, window);
+    </script>
+  </head>
+  <body>
+    <div style="display: none;">
+      <img src="http://ipai.cnhubei.com/v/hblx/img/logo.png">
+      <input type="hidden" id="nickname" value="<%= nickname %>" >
+    </div>
+    <div id="wrapper" class="container">
+      <!-- <div id="btn_music" class="btn-music rotate"></div> -->
+      <div class="page page1">
+        <div class="p13"></div>
+      </div>
+      <div class="page page2">
+        <div class="p21"></div>
+      </div>
+      <div class="page page3">
+        <div class="mail">
+          <div class="content"></div>
+        </div>
+        <div class="mail-cover"></div>
+        <div class="mail-box">
+          <span class="btn-open"></span>
+          <span class="btn-score"></span>
+        </div>
+        <div class="move"></div>
+        <span class="btn-back">返回</span>
+      </div>
+      <div class="page page4">
+        <ul class="score-panel">
+          <li>
+            <label>经济发展</label>
+            <div class="bar-box">
+              <div class="bar"></div>
+              <span class="cursor"></span>
+              <span class="move"></span>
+            </div>
+          </li>
+          <li>
+            <label>文化教育</label>
+            <div class="bar-box">
+              <div class="bar"></div>
+              <span class="cursor"></span>
+            </div>
+          </li>
+          <li>
+            <label>医疗发展</label>
+            <div class="bar-box">
+              <div class="bar"></div>
+              <span class="cursor"></span>
+            </div>
+          </li>
+          <li>
+            <label>扶贫惠农</label>
+            <div class="bar-box">
+              <div class="bar"></div>
+              <span class="cursor"></span>
+            </div>
+          </li>
+          <li>
+            <label>交通环境</label>
+            <div class="bar-box">
+              <div class="bar"></div>
+              <span class="cursor"></span>
+            </div>
+          </li>
+        </ul>
+        <div class="p41"></div>
+        <span class="btn-back">返回</span>
+      </div>
+
+      <div class="page page5">
+        <div class="p1">
+          <div class="content"></div>
+          <span class="btn-send"></span>
+        </div>
+        <div class="p2">
+          <div class="content"></div>
+        </div>
+        <span class="btn-share"></span>
+        <div class="share-msg">对家乡的爱就要晒出来，在朋友圈来一场正能量狂欢吧！</div>
+      </div>
+
+      <div id="share_panel" class="dlg share off">
+        <div class="mask"></div>
+        <div class="dlg-content"></div>
+      </div>
+    </div>
+    <script type="text/javascript"  src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    <script type="text/javascript"  src="js/index.js"></script>
+    <script>
+      var signature = '';
+      var signatureLink = "http://xmdx.dev.cnhubei.com/gsw/signature/jcw";
+      var currLink = location.href.split('#')[0];
+      var appId = "wxf947d7d09ef1f584";
+      var timestamp = "1414587499";
+      var nonceStr = "xkXGEs8VMCP";
+      var shareLink = 'http://ipai.cnhubei.com/v/hblx/index';
+      var title = '@你 家乡这张答卷还满意么？快来打个分吧！';
+      var imgUrl = "http://ipai.cnhubei.com/v/hblx/img/logo.png";
+      var desc = "湖北交出17份诚意满满的答卷，谁的家乡最靓？你来定！";
+      $.ajax({
+        url : signatureLink,
+        async : false,
+        data : {url : currLink},
+        success : function(data){
+          signature = data;
+        }
+      });
+      wx.config({
+        // debug: true, 
+        appId: appId, // 必填，公众号的唯一标识
+        timestamp: timestamp, // 必填，生成签名的时间戳
+        nonceStr: nonceStr, // 必填，生成签名的随机串
+        signature: signature,// 必填，签名，见附录1
+        jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ'] 
+      });
+      wx.hideOptionMenu();
+      wx.ready(function(){
+        wx.showOptionMenu();
+        wx.onMenuShareTimeline({
+          title: title, // 
+          link: shareLink, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          trigger: function (res) {
+            var score = moka.index.totalScore;
+            if(score){
+              var city = cityData[moka.index.cityIndex].city;
+              city = city.replace('市','').replace('林区', '');
+              var titlePre = '我觉得家乡' + city + '发展';
+              var titleTail = '，你家乡怎么样，也来打个分吧！';
+              var title = '还需加油';
+              if(score > 0){
+                title = '日新月异';
+              }
+              if(score > 4){
+                title = '蒸蒸日上';
+              }
+              if(score > 8){
+                title = '十分给力';
+              }
+              if(score > 12){
+                title = '前景辉煌';
+              }
+              this.title = titlePre + title + titleTail;
+            }
+          },
+          success: shareCallback,
+          cancel: function () { 
+          }
+        });
+
+        wx.onMenuShareAppMessage({
+          title: title, // 分享标题
+          desc: desc, // 分享描述
+          link: shareLink, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          type: '', // 分享类型,music、video或link，不填默认为link
+          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+          trigger: function (res) {
+            var score = moka.index.totalScore;
+            if(score){
+              var city = cityData[moka.index.cityIndex].city;
+              city = city.replace('市','').replace('林区', '');
+              var titlePre = '我觉得家乡' + city + '发展';
+              var titleTail = '，你家乡怎么样，也来打个分吧！';
+              var title = '还需加油';
+              if(score > 0){
+                title = '日新月异';
+              }
+              if(score > 4){
+                title = '蒸蒸日上';
+              }
+              if(score > 8){
+                title = '十分给力';
+              }
+              if(score > 12){
+                title = '前景辉煌';
+              }
+              this.title = titlePre + title + titleTail;
+            }
+          },
+          success: shareCallback,
+          cancel: function () { 
+          }
+        });
+
+        wx.onMenuShareQQ({
+          title: title, // 分享标题
+          desc: desc, // 分享描述
+          link: shareLink, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          type: '', // 分享类型,music、video或link，不填默认为link
+          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+          trigger: function (res) {
+            var score = moka.index.totalScore;
+            if(score){
+              var city = cityData[moka.index.cityIndex].city;
+              city = city.replace('市','').replace('林区', '');
+              var titlePre = '我觉得家乡' + city + '发展';
+              var titleTail = '，你家乡怎么样，也来打个分吧！';
+              var title = '还需加油';
+              if(score > 0){
+                title = '日新月异';
+              }
+              if(score > 4){
+                title = '蒸蒸日上';
+              }
+              if(score > 8){
+                title = '十分给力';
+              }
+              if(score > 12){
+                title = '前景辉煌';
+              }
+              this.title = titlePre + title + titleTail;
+            }
+          },
+          success: shareCallback,
+          cancel: function () { 
+          }
+        });
+      });
+      var shareCallback = function(){
+      };
+    </script>
+    <script src="http://www.cnhubei.com/public/js/traffic_statistics_clean.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        moka.index.init();
+      });
+    </script>
+  </body>
+</html>

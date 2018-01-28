@@ -1,0 +1,41 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "private": true,
+  "engines": {
+    "node": ">=0.10.x"
+  },
+  "author": {},
+  "scripts": {
+    "start": "node ./app.js",
+    "test": "make test"
+  },
+  "dependencies": {
+    "async": "0.8.0",
+    "blueimp-md5": "^2.3.0",
+    "body-parser": "~1.0.0",
+    "connect-redis": "^3.1.0",
+    "cookie": "0.1.0",
+    "cookie-parser": "~1.0.1",
+    "debug": "~0.7.4",
+    "ejs": "~0.8.5",
+    "express": "~4.0.0",
+    "express-session": "^1.14.2",
+    "less-middleware": "^2.1.0",
+    "log4js": "0.6.16",
+    "method-override": "1.0.0",
+    "multiparty": "3.2.4",
+    "mysql": "2.4.2",
+    "qn": "1.0.1",
+    "redis": "^2.6.3",
+    "request": "2.53.0",
+    "request-promise": "^2.0.1",
+    "static-favicon": "~1.0.0",
+    "xml2js": "^0.4.16",
+    "xmlreader": "^0.2.3"
+  },
+  "devDependencies": {
+    "should": "*",
+    "mocha": "*"
+  }
+}

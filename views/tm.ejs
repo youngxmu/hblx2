@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <%- include common/meta.ejs %>
+    <link rel='stylesheet' href='css/index.css' />
+    <title>湖北老乡，这里有一份来自家乡的答卷，请您阅卷！</title>
+    <script>
+      (function (doc, win) { 
+        var docEl = doc.documentElement,
+          resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize',
+          recalc = function () {
+            var clientWidth = docEl.clientWidth;
+            if (!clientWidth) return;
+            docEl.style.fontSize = parseInt(100 * (clientWidth / 320) * 320 / 640,10) + 'px';
+          };
+        if (!doc.addEventListener) return; 
+        doc.addEventListener('DOMContentLoaded', recalc, false);
+      })(document, window);
+    </script>
+  </head>
+  <body>
+    <div style="display: none;">
+      <img src="http://act.cnhubei.com/static/hblx2/img/logo.png">
+      <input type="hidden" id="nickname" value="<%= nickname %>" >
+      <input type="hidden" id="avatar" value="<%= avatar %>" >
+    </div>
+    <div id="wrapper" class="container">
+      <!-- <div id="btn_music" class="btn-music rotate"></div> -->
+      <div class="page page5">
+        <img src="img/tm/<%= cityIndex%>.jpg">
+        <ul class="msg-box"></ul>
+        <img class="like-avatar" src="<%= avatar %>"></img>
+        <span class="btn-like"></span>
+        <span class="btn-msg"></span>
+        <span class="btn-share"></span>
+        <div class="msg-input">
+          <div class="weui-search-bar" id="searchBar">
+            <div class="weui-search-bar__form">
+                <div class="weui-search-bar__box">
+                    <input id="msg_input" type="search" class="weui-search-bar__input" placeholder="搜索" required="" onsearch="moka.tm.commit">
+                    <a href="javascript:" class="weui-icon-clear"></a>
+                </div>
+                <label class="weui-search-bar__label">
+                    <span>点击输入</span>
+                </label>
+            </div>
+            <a href="javascript:" class="weui-search-bar__cancel-btn">取消</a>
+          </div>
+        </div>
+      </div>
+      <div id="share_panel" class="dlg share off">
+        <div class="mask"></div>
+        <div class="dlg-content"></div>
+      </div>
+    </div>
+    <script type="text/juicer" id="msg-tpl">
+    {@each list as item, index}
+      <li class="" style="${index|getStyle}"><img class="msg-pic" src="${item.p}" >${item.t}</li>
+    {@/each}
+    </script>
+    <script type="text/javascript"  src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+    
+    <script>
+      var signature = '';
+      var signatureLink = "http://xmdx.dev.cnhubei.com/gsw/signature/jcw";
+      var currLink = location.href.split('#')[0];
+      var appId = "wxf947d7d09ef1f584";
+      var timestamp = "1414587499";
+      var nonceStr = "xkXGEs8VMCP";
+      var shareLink = 'http://act.cnhubei.com/hblx2/index';
+      var title = '湖北老乡，这里有一份来自家乡的答卷，请您阅卷！';
+      var imgUrl = "http://act.cnhubei.com/static/hblx/img/logo.png";
+      var desc = "习近平说：“时代是出卷人，我们是答卷人，人民是阅卷人。”以此为出发点，整理17个地市的政府工作报告，请老乡来当阅卷人。";
+      $.ajax({
+        url : signatureLink,
+        async : false,
+        data : {url : currLink},
+        success : function(data){
+          signature = data;
+        }
+      });
+      wx.config({
+        // debug: true, 
+        appId: appId, // 必填，公众号的唯一标识
+        timestamp: timestamp, // 必填，生成签名的时间戳
+        nonceStr: nonceStr, // 必填，生成签名的随机串
+        signature: signature,// 必填，签名，见附录1
+        jsApiList: ['onMenuShareTimeline','onMenuShareAppMessage','onMenuShareQQ'] 
+      });
+      wx.hideOptionMenu();
+      wx.ready(function(){
+        wx.showOptionMenu();
+        wx.onMenuShareTimeline({
+          title: title, // 
+          link: shareLink, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          trigger: function (res) {
+           
+          },
+          success: shareCallback,
+          cancel: function () { 
+          }
+        });
+
+        wx.onMenuShareAppMessage({
+          title: title, // 分享标题
+          desc: desc, // 分享描述
+          link: shareLink, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          type: '', // 分享类型,music、video或link，不填默认为link
+          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+          trigger: function (res) {
+            
+          },
+          success: shareCallback,
+          cancel: function () { 
+          }
+        });
+
+        wx.onMenuShareQQ({
+          title: title, // 分享标题
+          desc: desc, // 分享描述
+          link: shareLink, // 分享链接
+          imgUrl: imgUrl, // 分享图标
+          type: '', // 分享类型,music、video或link，不填默认为link
+          dataUrl: '', // 如果type是music或video，则要提供数据链接，默认为空
+          trigger: function (res) {
+            
+          },
+          success: shareCallback,
+          cancel: function () { 
+          }
+        });
+      });
+      var shareCallback = function(){
+      };
+    </script>
+    <script type="text/javascript"  src="js/tm.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        moka.tm.init();
+      });
+    </script>
+  </body>
+</html>
