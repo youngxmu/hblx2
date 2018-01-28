@@ -307,7 +307,7 @@ input{outline:none}
 }
 
 
-.page5 img{
+.page5 > img{
     width: 100%;
     margin-top: -1.5rem;
 }
@@ -417,7 +417,7 @@ input{outline:none}
     font-size: 0.2rem;
     left:100%;
     white-space: nowrap;
-    transition: transform 6s linear;
+    transition: transform 9s linear;
 }
 
 .page5 .msg-box li.flow{
