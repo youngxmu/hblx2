@@ -134,12 +134,13 @@ var scoreData = [
         var cityIndex = parseInt(_this.cityIndex) + 1;
         $('.page3 .mail .content').append('<img src="img/mail/' + cityIndex + '.jpg" >');
         $('#bgm').remove();
-        $('body').append('<audio src="http://act.cnhubei.com/static/hblx/mp3/'+ cityIndex +'.mp3" id="bgm" style="display:none;" autoplay="autoplay" ></audio>')
+        $('body').append('<audio src="http://act.cnhubei.com/static/hblx2/mp3/'+ cityIndex +'.mp3" id="bgm" style="display:none;" autoplay="autoplay" ></audio>')
         $('#bgm')[0].addEventListener('ended', function () {  
           $('#btn_music').removeClass('rotate');
         }, false);
         $('#bgm')[0].play();
         // $('#btn_music').show();
+        $('.page3 img').attr('src', 'img/mail/' + cityIndex + '.jpg')
         $('.page4 img').attr('src', 'img/paper/' + cityIndex + '.jpg')
         _this.next();
       });
@@ -149,7 +150,6 @@ var scoreData = [
         $('.page3 .mail img').css('opacity', 1);
         
         $('.mail').css('-webkit-transform', 'translateY(2%)');
-        $('.btn-score').show();
 
         $('.page3 .btn-back').show();
         $('.page3 .move').addClass('on');
@@ -222,8 +222,6 @@ var scoreData = [
         $('.page3 .mail .content img').remove();
         
         $('.mail').css('-webkit-transform', 'translateY(69%)');
-        $('.btn-score').hide();
-        $('.page3 .btn-back').hide();
         $('.page3 .move').removeClass('on');
         $('.page4 .move').removeClass('on');
         $('#bgm')[0].pause();
