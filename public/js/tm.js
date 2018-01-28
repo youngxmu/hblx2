@@ -25,6 +25,8 @@
         }
       });
 
+      $('#wrapper').on('touchstart', '#btn_send', _this.commit);
+
   
       $('#wrapper').on('touchstart', '#btn_music', function(ev){
         if($(this).hasClass('rotate')){

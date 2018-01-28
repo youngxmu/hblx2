@@ -22,8 +22,8 @@ var login = function (req, res, callback) {
         openid : 'o-OiHjkAEb7IEPmIv-GcFS_i6lLE',
         nickname : 'nickname'
     };
-   // req.session.user = user
-    //return callback(null , user);
+    // req.session.user = user
+    // return callback(null , user);
     if(req.session && req.session.user){
         return callback(null, req.session.user);
     }else{
@@ -73,7 +73,6 @@ router.get('/tm', function (req, res, next) {
 });
 
 router.post('/tm', function (req, res, next) {
-
     var user = {
         openid : 'XXX',
         nickname : '湖北网友',

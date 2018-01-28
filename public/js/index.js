@@ -40,6 +40,7 @@ var scoreData = [
     msgs : ['情况还能更好~','情况日益改善！','全面改善，道路通畅许多，天也是蓝蓝的颜色。','有很大改善！交通拥堵之困已不存在，环境也好了，晚上还能看星星~']
   }
 ];
+
 (function(P){
 	var _this = null;
 	_this = P.index = {
@@ -233,7 +234,6 @@ var scoreData = [
         var cityIndex = parseInt(_this.cityIndex) + 1;
         window.location.href = 'index/tm?city=' + cityIndex;
       });
-      
     },
     next : function(){
       _this.currIndex++;
