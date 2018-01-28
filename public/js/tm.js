@@ -51,12 +51,12 @@
     },
     getStyle : function(index){
       // var left = ;
-      var top = util.randomNum(1, 4);
+      var top = util.randomNum(1, 3);
       if(top == _this.lastTop){
         top = top - 1;
       }
       _this.lastTop = top;
-      top = top * 0.6;
+      top = top * 0.5;
       var transition = 'transform 6s linear ' + index + 's';
       var style = 'top:' + top + 'rem;transition:' + transition;
       return style;
